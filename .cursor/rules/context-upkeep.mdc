@@ -1,0 +1,119 @@
+---
+alwaysApply: true
+---
+
+# AI Context Maintenance Rules
+
+## Core Maintenance Rules
+
+### RULE 1: Always Update Core Index Files
+When making ANY changes to the project:
+- Update `ai-context/AI-CONTEXT-INDEX.md` with current status
+- Update `ai-context/TECHNICAL-REFERENCE.md` with new configurations
+- Update `ai-context/STARTUP-GUIDE.md` if commands change
+- Update `ai-context/SEARCH-INDEX.md` with new keywords
+
+### RULE 2: Maintain File Priority Hierarchy
+Keep files in this priority order:
+1. **HIGH PRIORITY** (Essential for AI tools):
+   - `ai-context/AI-CONTEXT-INDEX.md`
+   - `ai-context/STARTUP-GUIDE.md`
+   - `ai-context/TECHNICAL-REFERENCE.md`
+   - `ai-context/TROUBLESHOOTING-GUIDE.md`
+   - `ai-context/SEARCH-INDEX.md`
+
+2. **MEDIUM PRIORITY** (Important reference):
+   - `package.json`, `App.tsx`, `.vscode/launch.json`, `app.json`, `tsconfig.json`
+
+3. **LOW PRIORITY** (Detailed documentation):
+   - Directory-based documentation files
+
+### RULE 3: Synchronize Information Across Files
+When updating any file:
+- Ensure consistency across all related files
+- Update cross-references and links
+- Verify command accuracy in all guides
+- Check that technical details match implementation
+
+### RULE 4: Preserve AI-Optimized Structure
+Never break the flat file structure:
+- Keep essential files in root `ai-context/` directory
+- Maintain quick access to core information
+- Avoid deep nesting for critical files
+
+## Specific Update Tasks
+
+### When Adding Dependencies:
+1. Update `package.json` (automatic)
+2. Update `ai-context/TECHNICAL-REFERENCE.md` dependencies section
+3. Update `ai-context/AI-CONTEXT-INDEX.md` tech stack
+4. Update `ai-context/SEARCH-INDEX.md` keywords if new technology
+
+### When Changing Scripts:
+1. Update `package.json` scripts (automatic)
+2. Update `ai-context/STARTUP-GUIDE.md` commands
+3. Update `ai-context/TECHNICAL-REFERENCE.md` scripts section
+4. Update VS Code launch configurations if needed
+
+### When Modifying App.tsx:
+1. Update `App.tsx` (automatic)
+2. Update `ai-context/TECHNICAL-REFERENCE.md` implementation section
+3. Update `ai-context/AI-CONTEXT-INDEX.md` current implementation
+4. Update `ai-context/SEARCH-INDEX.md` components section
+
+### When Fixing Issues:
+1. Document the fix in `ai-context/TROUBLESHOOTING-GUIDE.md`
+2. Update `ai-context/AI-CONTEXT-INDEX.md` fixes applied section
+3. Update `ai-context/TECHNICAL-REFERENCE.md` key fixes section
+
+## Quality Assurance
+
+### Before Session End:
+- Verify all core files are up-to-date
+- Test primary startup commands (`npm run web`, `npm run cleanup`)
+- Check that troubleshooting guides reflect current state
+- Ensure AI context is complete and accurate
+
+### Verification Commands:
+```bash
+npm run web          # Test primary startup
+npm run cleanup      # Test cleanup
+npm list react-native-paper  # Verify dependencies
+netstat -ano | findstr :3001  # Check processes
+```
+
+## Emergency Updates Required
+Update context immediately when:
+- Critical errors occur
+- Commands stop working
+- Dependencies break
+- Configuration changes
+- New issues discovered
+
+## AI Tool Optimization
+- Use consistent keywords across files
+- Include relevant search terms in content
+- Maintain comprehensive indexing
+- Ensure quick lookup capabilities
+- Keep most important information at the top
+
+## Current Project Status
+- Node.js: 22.21.0 LTS
+- React Native: 0.81.5
+- Expo SDK: 54.0.18
+- React Native Paper: 5.14.5
+- Custom Ports: 3001 (mobile), 3002 (web)
+- Status: ✅ Production Ready
+
+## Maintenance Checklist
+Before considering context maintenance complete:
+- [ ] All core index files updated
+- [ ] Technical references current
+- [ ] Commands tested and verified
+- [ ] Troubleshooting guides accurate
+- [ ] Search optimization maintained
+- [ ] File structure preserved
+- [ ] Cross-references updated
+- [ ] Status indicators current
+- [ ] AI tool access optimized
+- [ ] Information accuracy verified
