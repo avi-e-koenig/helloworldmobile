@@ -15,6 +15,11 @@ export const createStyles = (theme: MD3Theme) =>
       shadowOpacity: 0.22,
       shadowRadius: 2.22,
     },
+    cameraView: {
+      borderRadius: 12,
+      height: 200,
+      width: '100%',
+    },
     card: {
       marginBottom: 24,
     },
@@ -29,6 +34,12 @@ export const createStyles = (theme: MD3Theme) =>
       fontWeight: '600',
       marginBottom: 8,
       textAlign: 'center',
+    },
+    chipStyle: {
+      marginVertical: 8,
+    },
+    chipTextStyle: {
+      fontSize: 12,
     },
     container: {
       flex: 1,
@@ -52,6 +63,11 @@ export const createStyles = (theme: MD3Theme) =>
     headerTitle: {
       fontWeight: 'bold',
       marginBottom: 8,
+    },
+    historyItem: {
+      borderRadius: 8,
+      marginVertical: 4,
+      padding: 12,
     },
     scanArea: {
       alignItems: 'center',
