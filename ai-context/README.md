@@ -12,6 +12,7 @@ This guide provides a complete implementation plan for transforming your existin
 5. **[SEARCH-INDEX.md](./SEARCH-INDEX.md)** - AI tools optimization index
 6. **[AI-CONTEXT-MAINTENANCE-RULES.md](./AI-CONTEXT-MAINTENANCE-RULES.md)** - Maintenance rules for AI tools
 7. **[MAINTENANCE-CHECKLIST.md](./MAINTENANCE-CHECKLIST.md)** - Quick maintenance checklist
+8. **[DEVELOPMENT-CONVENTIONS.md](./DEVELOPMENT-CONVENTIONS.md)** - Development conventions & best practices
 
 ### **Detailed Documentation**
 6. **[🚀 Quick Startup](./startup/quick-start.md)** - Comprehensive startup guide
