@@ -3,10 +3,12 @@ import { ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text, Card, Button, Surface, useTheme } from 'react-native-paper';
 
-import { styles } from './styles';
+import { createStyles } from './styles';
+import packageJson from '../../package.json';
 
 export default function HomeScreen() {
   const theme = useTheme();
+  const styles = createStyles(theme);
 
   return (
     <SafeAreaView
@@ -16,13 +18,12 @@ export default function HomeScreen() {
         {/* Header Section */}
         <Surface
           style={[styles.header, { backgroundColor: theme.colors.primary }]}
-          elevation={2}
         >
           <Text
             variant='headlineLarge'
             style={[styles.headerTitle, { color: theme.colors.onPrimary }]}
           >
-            Hello, World 👋
+            Hello, World 👋 {packageJson.version}
           </Text>
           <Text
             variant='bodyLarge'
@@ -69,10 +70,12 @@ export default function HomeScreen() {
         </Card>
 
         {/* Action Buttons */}
-        <Surface style={styles.buttonContainer} elevation={1}>
+        <Surface style={styles.buttonContainer}>
           <Button
             mode='contained'
-            onPress={() => {}}
+            onPress={() => {
+              /** TODO: Implement get started */
+            }}
             style={styles.button}
             icon='star'
           >
@@ -80,7 +83,9 @@ export default function HomeScreen() {
           </Button>
           <Button
             mode='outlined'
-            onPress={() => {}}
+            onPress={() => {
+              /** TODO: Implement learn more */
+            }}
             style={styles.button}
             icon='information'
           >

@@ -2,10 +2,11 @@ import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text, Card, Button, Surface, useTheme } from 'react-native-paper';
 
-import { styles } from './styles';
+import { createStyles } from './styles';
 
 export default function ScanScreen() {
   const theme = useTheme();
+  const styles = createStyles(theme);
 
   return (
     <SafeAreaView
@@ -14,7 +15,6 @@ export default function ScanScreen() {
       {/* Header Section */}
       <Surface
         style={[styles.header, { backgroundColor: theme.colors.primary }]}
-        elevation={2}
       >
         <Text
           variant='headlineLarge'
@@ -53,7 +53,6 @@ export default function ScanScreen() {
           styles.scanArea,
           { backgroundColor: theme.colors.surfaceVariant },
         ]}
-        elevation={1}
       >
         <Text
           variant='bodyLarge'
@@ -85,10 +84,12 @@ export default function ScanScreen() {
       </Surface>
 
       {/* Action Buttons */}
-      <Surface style={styles.buttonContainer} elevation={1}>
+      <Surface style={styles.buttonContainer}>
         <Button
           mode='contained'
-          onPress={() => {}}
+          onPress={() => {
+            /** TODO: Implement scanning */
+          }}
           style={styles.button}
           icon='camera'
         >
@@ -96,7 +97,9 @@ export default function ScanScreen() {
         </Button>
         <Button
           mode='outlined'
-          onPress={() => {}}
+          onPress={() => {
+            /** TODO: Implement flashlight toggle */
+          }}
           style={styles.button}
           icon='flashlight'
         >
