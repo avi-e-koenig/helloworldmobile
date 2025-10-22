@@ -2,7 +2,7 @@
   "expo": {
     "name": "HelloWorldMobile",
     "slug": "HelloWorldMobile",
-    "version": "1.0.0",
+    "version": "0.1.2",
     "orientation": "portrait",
     "server": {
       "port": 3001
@@ -16,7 +16,10 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to scan barcodes and QR codes."
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -24,10 +27,12 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "permissions": ["android.permission.CAMERA"]
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": ["expo-camera"]
   }
 }
