@@ -4,6 +4,9 @@
     "slug": "HelloWorldMobile",
     "version": "1.0.0",
     "orientation": "portrait",
+    "server": {
+      "port": 3001
+    },
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
