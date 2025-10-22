@@ -1,28 +1,65 @@
 {
   "name": "helloworldmobile",
-  "version": "1.0.0",
+  "version": "0.1.2",
   "main": "index.ts",
+  "type": "module",
   "scripts": {
     "start": "expo start --port 3001",
     "android": "expo start --android --port 3001",
     "ios": "expo start --ios --port 3001",
     "web": "expo start --web --port 3002",
     "dev": "npm run cleanup && concurrently \"npm run web\" \"npm run android\"",
-    "cleanup": "taskkill /F /IM node.exe 2>nul || echo No Node processes found"
+    "cleanup": "taskkill /F /IM node.exe 2>nul || echo No Node processes found",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "prepare": "husky"
   },
   "dependencies": {
+    "@expo/vector-icons": "^15.0.2",
+    "@react-navigation/bottom-tabs": "^7.5.0",
+    "@react-navigation/native": "^7.1.18",
     "expo": "~54.0.18",
+    "expo-barcode-scanner": "^13.0.1",
+    "expo-camera": "~17.0.8",
     "expo-status-bar": "~3.0.8",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-native": "0.81.5",
     "react-native-paper": "^5.14.5",
+    "react-native-safe-area-context": "~5.6.0",
+    "react-native-screens": "~4.16.0",
     "react-native-web": "^0.21.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.38.0",
     "@types/react": "~19.1.0",
+    "@typescript-eslint/eslint-plugin": "^8.46.2",
+    "@typescript-eslint/parser": "^8.46.2",
     "concurrently": "^9.2.1",
+    "eslint": "^9.38.0",
+    "eslint-config-expo": "^10.0.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.0",
+    "eslint-plugin-react-native": "^5.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.5",
+    "prettier": "^3.6.2",
     "typescript": "~5.9.2"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
   },
   "private": true
 }

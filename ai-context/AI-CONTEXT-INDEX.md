@@ -8,7 +8,9 @@
 ## 📁 File Structure & Quick Access
 
 ### **Core Application Files**
-- `App.tsx` - Main Material Design Hello World implementation
+- `App.tsx` - Main app component with providers (refactored)
+- `navigation/index.tsx` - Navigation component with bottom tabs
+- `navigation/types.ts` - Navigation type definitions
 - `package.json` - Dependencies and scripts (custom ports: 3001/3002)
 - `app.json` - Expo configuration with custom ports
 - `tsconfig.json` - TypeScript configuration (fixed expo/tsconfig.base issue)
@@ -47,21 +49,44 @@ ai-context/
 
 ## 🎨 Current Implementation
 
-### **App.tsx Structure**
+### **App.tsx Structure (Refactored)**
 ```tsx
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { PaperProvider, MD3LightTheme, Button, Text } from 'react-native-paper';
+import React from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { PaperProvider, MD3LightTheme } from 'react-native-paper';
+
+import AppNavigator from './navigation';
 
 export default function App() {
   return (
     <SafeAreaProvider>
       <PaperProvider theme={MD3LightTheme}>
-        <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16 }}>
-          <Text variant="headlineMedium">Hello, World 👋</Text>
-          <Button mode="contained" onPress={() => {}}>Press me</Button>
-        </SafeAreaView>
+        <AppNavigator />
       </PaperProvider>
     </SafeAreaProvider>
+  );
+}
+```
+
+### **Navigation Structure**
+```tsx
+// navigation/index.tsx
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import HomeScreen from '../screens/home';
+import ScanScreen from '../screens/scan';
+
+const Tab = createBottomTabNavigator();
+
+export default function AppNavigator() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator>
+        {/* Navigation configuration */}
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 ```
