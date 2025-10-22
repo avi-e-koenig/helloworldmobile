@@ -1,11 +1,13 @@
 # 📋 DEVELOPMENT CONVENTIONS & BEST PRACTICES
 
 ## **🎯 Project Overview**
+
 This document outlines the development conventions, coding standards, and best practices for the HelloWorldMobile React Native app with Material Design.
 
-## **🏗️ Project Structure**
+## **🏗️ Structure & Naming**
 
-### **File Organization**
+### **Project Organization**
+
 ```
 HelloWorldMobile/
 ├── navigation/                 # Navigation components
@@ -19,33 +21,42 @@ HelloWorldMobile/
 │       ├── index.tsx         # Scan component logic
 │       └── styles.ts         # Scan component styles
 ├── ai-context/                # AI tool documentation
-│   ├── AI-CONTEXT-INDEX.md
-│   ├── STARTUP-GUIDE.md
-│   ├── TECHNICAL-REFERENCE.md
-│   ├── TROUBLESHOOTING-GUIDE.md
-│   ├── DEVELOPMENT-CONVENTIONS.md (this file)
-│   └── ...
 ├── App.tsx                    # Main app component with providers
-├── package.json
-├── app.json
-└── .vscode/launch.json
+├── package.json               # Dependencies and scripts
+├── app.json                   # Expo configuration
+└── .vscode/launch.json        # VS Code launch configurations
 ```
 
-### **Branch Strategy**
-- **`main`** - Production branch (stable releases)
-- **`staging`** - Pre-production testing branch (current development)
+### **File Naming Conventions**
 
-### **Navigation Structure**
-- **`navigation/index.tsx`** - Main navigation component with bottom tab navigator
-- **`navigation/types.ts`** - TypeScript type definitions for navigation
-- **Separation of Concerns** - Navigation logic separated from main App component
+```bash
+# Component files
+ComponentName.tsx           # React components
+styles.ts                  # Style files
+types.ts                   # Type definitions
 
-## **🎨 Styling Conventions**
+# Utility files
+component-name.ts          # Utility functions
+constants.ts               # App constants
+utils.ts                   # Helper functions
 
-### **Current Approach: Separated Styles**
+# Folder naming
+screens/                   # Screen components
+components/                # Reusable components
+navigation/                # Navigation logic
+hooks/                     # Custom hooks
+utils/                     # Utility functions
+types/                     # Type definitions
+```
+
+## **🎨 Styling & Theming**
+
+### **Separated Styles Pattern**
+
 ```typescript
-// ✅ Current pattern - styles in separate file
 // screens/home/styles.ts
+import { StyleSheet } from 'react-native';
+
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -59,51 +70,25 @@ export const styles = StyleSheet.create({
 import { styles } from './styles';
 ```
 
-### **Styling Best Practices**
+### **Theme Integration**
 
-#### **1. Folder-Based Component Organization**
-- ✅ **Component folder** - Each screen has its own folder
-- ✅ **Separated concerns** - Logic in index.tsx, styles in styles.ts
-- ✅ **Better maintainability** - Easier to find and modify
-
-#### **2. Style File Structure**
 ```typescript
-// ✅ Standard style file structure
-import { StyleSheet } from 'react-native';
+// ✅ Material Design 3 theming
+import { useTheme, MD3LightTheme } from 'react-native-paper';
 
-export const styles = StyleSheet.create({
-  // Component styles here
-});
-```
-
-#### **3. Component File Structure**
-```typescript
-// ✅ Standard component structure with separated styles
-import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useTheme } from 'react-native-paper';
-
-import { styles } from './styles';
-
-export default function ComponentName() {
-  const theme = useTheme();
-  // Component logic here
-}
-```
-
-#### **4. Theme Integration**
-```typescript
-// ✅ Use theme colors
 const theme = useTheme();
 backgroundColor: theme.colors.primary
+color: theme.colors.onPrimary
 
-// ✅ Material Design 3 theming
-<PaperProvider theme={MD3LightTheme}>
+// ✅ Material Design 3 variants
+<Text variant="headlineLarge">Title</Text>
+<Text variant="bodyMedium">Content</Text>
 ```
 
-## **📱 Component Conventions**
+## **📱 Components & Conventions**
 
-### **Component Structure**
+### **Standard Component Structure**
+
 ```typescript
 // ✅ Standard component structure with separated styles
 import React from 'react';
@@ -112,8 +97,17 @@ import { Component, useTheme } from 'react-native-paper';
 
 import { styles } from './styles';
 
-export default function ComponentName() {
+interface ComponentProps {
+  // Props interface
+}
+
+export default function ComponentName({ }: ComponentProps) {
   const theme = useTheme();
+
+  // State declarations
+  // Effect hooks
+  // Event handlers
+  // Render logic
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
@@ -123,23 +117,67 @@ export default function ComponentName() {
 }
 ```
 
-### **Import Order**
-1. **React imports**
-2. **React Native imports**
-3. **Third-party library imports**
-4. **Local component imports**
-5. **Style imports** (from local styles.ts file)
+### **Import Organization**
+
+```typescript
+// ✅ Import order convention
+// 1. React imports
+import React from 'react';
+import { useState, useEffect } from 'react';
+
+// 2. React Native imports
+import { View, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+// 3. Third-party library imports
+import { Button, Card } from 'react-native-paper';
+import { NavigationContainer } from '@react-navigation/native';
+
+// 4. Local component imports
+import HomeScreen from './screens/home';
+import ScanScreen from './screens/scan';
+
+// 5. Style imports (always last)
+import { styles } from './styles';
+```
 
 ### **Component Naming**
-- ✅ **PascalCase** for components: `HomeScreen`, `ScanScreen`
-- ✅ **camelCase** for functions: `handlePress`, `onSubmit`
-- ✅ **kebab-case** for folders: `home/`, `scan/`
-- ✅ **index.tsx** for main component file
-- ✅ **styles.ts** for style files
 
-## **🧭 Navigation Conventions**
+- **PascalCase** for components: `HomeScreen`, `ScanScreen`
+- **camelCase** for functions: `handlePress`, `onSubmit`
+- **kebab-case** for folders: `home/`, `scan/`
+- **index.tsx** for main component file
+- **styles.ts** for style files
+
+### **Material Design Components**
+
+```typescript
+// ✅ Material Design components
+import {
+  Text,
+  Card,
+  Button,
+  Surface,
+  useTheme
+} from 'react-native-paper';
+
+// ✅ Proper component props
+<Button mode="contained" onPress={handlePress}>
+  Action
+</Button>
+```
+
+### **Layout Patterns**
+
+- **Cards** for content sections
+- **Surfaces** for elevated content
+- **SafeAreaView** for proper spacing
+- **Consistent padding** (16px, 24px)
+
+## **🧭 Navigation**
 
 ### **React Navigation Structure**
+
 ```typescript
 // ✅ Bottom tab navigation
 const Tab = createBottomTabNavigator();
@@ -156,72 +194,202 @@ const Tab = createBottomTabNavigator();
 ```
 
 ### **Screen Configuration**
-- ✅ **Custom headers** - Use Material Design headers in screens
-- ✅ **Consistent theming** - Material Design 3 colors
-- ✅ **Icon integration** - MaterialCommunityIcons from Expo
 
-## **🎯 Material Design Conventions**
+- **Custom headers** - Use Material Design headers in screens
+- **Consistent theming** - Material Design 3 colors
+- **Icon integration** - MaterialCommunityIcons from Expo
 
-### **Component Usage**
-```typescript
-// ✅ Material Design components
-import { 
-  Text, 
-  Card, 
-  Button, 
-  Surface,
-  useTheme 
-} from 'react-native-paper';
+## **🔧 Git & Branch Workflow**
 
-// ✅ Proper component props
-<Button mode="contained" onPress={handlePress}>
-  Action
-</Button>
-```
+### **Branch Strategy**
 
-### **Theme Integration**
-```typescript
-// ✅ Use theme colors
-const theme = useTheme();
-backgroundColor: theme.colors.primary
-color: theme.colors.onPrimary
+- **`main`** - Production branch (stable releases)
+- **`staging`** - Pre-production testing branch (current development)
 
-// ✅ Material Design 3 variants
-<Text variant="headlineLarge">Title</Text>
-<Text variant="bodyMedium">Content</Text>
-```
+### **Branch Naming Convention**
 
-### **Layout Patterns**
-- ✅ **Cards** for content sections
-- ✅ **Surfaces** for elevated content
-- ✅ **SafeAreaView** for proper spacing
-- ✅ **Consistent padding** (16px, 24px)
-
-## **🔧 Development Workflow**
-
-### **Branch Management**
 ```bash
-# ✅ Development workflow
-git checkout staging          # Work on staging branch
-# Make changes
-git add .
-git commit -m "feat: add new feature"
-git push origin staging
+# ✅ Branch naming patterns
+feature/description        # New features
+bugfix/description         # Bug fixes
+hotfix/description         # Critical fixes
+refactor/description       # Code refactoring
+docs/description          # Documentation updates
+chore/description         # Maintenance tasks
+
+# Examples:
+feature/home-navigation
+bugfix/navigation-issue
+refactor/component-structure
 ```
 
-### **Testing Approach**
-- ✅ **Test on web first** - `npm run web`
-- ✅ **Test on mobile** - Expo Go scanning
-- ✅ **Test both platforms** - Web and mobile
+### **Commit Flow & Conventions**
 
-### **Code Quality**
-- ✅ **TypeScript** - Strict typing enabled
-- ✅ **Linting** - No linting errors
-- ✅ **Material Design** - Consistent theming
+#### **Commit Message Format**
 
-## **📦 Dependencies Management**
+Following **Conventional Commits** specification:
+
+```bash
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer]
+```
+
+#### **Commit Types**
+
+- **`feat`** - New feature
+- **`fix`** - Bug fix
+- **`docs`** - Documentation changes
+- **`style`** - Code style changes (formatting, etc.)
+- **`refactor`** - Code refactoring
+- **`test`** - Adding or updating tests
+- **`chore`** - Maintenance tasks
+- **`perf`** - Performance improvements
+- **`ci`** - CI/CD changes
+- **`build`** - Build system changes
+
+#### **Commit Examples**
+
+```bash
+# ✅ Good commit messages
+feat(home): add bottom navigation with Material Design
+fix(navigation): resolve tab switching issue
+docs(api): update authentication endpoints
+style(components): format code with prettier
+refactor(screens): split components into separate files
+test(home): add unit tests for HomeScreen
+chore(deps): update React Native Paper to v5.14.5
+
+# ❌ Bad commit messages
+fix stuff
+update
+changes
+working
+```
+
+### **Development Workflow Process**
+
+```bash
+# 1. Create feature branch
+git checkout staging
+git pull origin staging
+git checkout -b feature/new-feature
+
+# 2. Make changes and stage files
+git add .
+
+# 3. Commit with conventional message (triggers pre-commit hooks)
+git commit -m "feat(navigation): add home navigation feature"
+
+# 4. Push to remote
+git push origin feature/new-feature
+
+# 5. Create pull request to staging
+# 6. Code review process
+# 7. Merge after approval
+```
+
+### **Pull Request Template**
+
+```markdown
+# ✅ PR Template
+
+## 📋 Description
+
+Brief description of changes
+
+## 🎯 Type of Change
+
+- [ ] Bug fix
+- [ ] New feature
+- [ ] Breaking change
+- [ ] Documentation update
+
+## 🧪 Testing
+
+- [ ] Tested on web
+- [ ] Tested on mobile
+- [ ] No linting errors
+- [ ] All tests pass
+
+## 📱 Screenshots (if applicable)
+
+Add screenshots here
+
+## ✅ Checklist
+
+- [ ] Code follows project conventions
+- [ ] Self-review completed
+- [ ] Documentation updated
+- [ ] No console errors
+```
+
+## **📋 Code Quality & Linting**
+
+### **Pre-commit Hooks (Husky + lint-staged)**
+
+```bash
+# ✅ Automatic code quality checks before commit
+# - ESLint auto-fix
+# - Prettier formatting
+# - TypeScript type checking
+```
+
+### **Code Quality Standards**
+
+- **No ESLint errors**
+- **No TypeScript errors**
+- **Prettier formatting applied**
+- **No console.log statements in production**
+- **Proper error handling**
+- **Type safety maintained**
+
+### **Performance Standards**
+
+```typescript
+// ✅ Performance best practices
+- Use React.memo for expensive components
+- Implement proper key props for VirtualizedLists
+- Avoid inline object creation in render
+- Use useCallback for event handlers
+- Implement proper cleanup in useEffect
+```
+
+### **TypeScript Conventions**
+
+- **Strict mode** enabled
+- **Type safety** for all components
+- **Interface definitions** for props
+- **Proper imports** with type safety
+
+### **Error Handling**
+
+- **Graceful degradation** - Handle missing features
+- **User feedback** - Show appropriate messages
+- **Fallback UI** - Default states for components
+
+## **🚀 Launch Configurations**
+
+### **VS Code Launch Options**
+
+1. **"Run App"** - Standard mobile server
+2. **"Run Android App"** - Android-specific build
+3. **"Run iOS App"** - iOS-specific build
+4. **"Run Web App"** - Web version
+5. **"Run Web + Android (Parallel)"** - Both platforms
+
+### **Port Configuration**
+
+- **Mobile/Android**: Port 3001
+- **Web**: Port 3002
+- **Metro Bundler**: Port 3001
+
+## **📦 Dependencies**
 
 ### **Package Installation**
+
 ```bash
 # ✅ React Navigation
 npm install @react-navigation/native @react-navigation/bottom-tabs
@@ -234,80 +402,142 @@ npx expo install @expo/vector-icons
 ```
 
 ### **Dependency Categories**
+
 - **Navigation**: React Navigation packages
 - **UI Components**: React Native Paper
 - **Icons**: Expo Vector Icons
 - **Platform**: Expo SDK packages
 
-## **🚀 Launch Configurations**
+## **📊 Versioning & Release Management**
 
-### **VS Code Launch Options**
-1. **"Run App"** - Standard mobile server
-2. **"Run Android App"** - Android-specific build
-3. **"Run iOS App"** - iOS-specific build
-4. **"Run Web App"** - Web version
-5. **"Run Web + Android (Parallel)"** - Both platforms
+### **Version Numbering**
 
-### **Port Configuration**
-- **Mobile/Android**: Port 3001
-- **Web**: Port 3002
-- **Metro Bundler**: Port 3001
+```bash
+# ✅ Semantic versioning (MAJOR.MINOR.PATCH)
+0.1.0    # Current version
+0.1.1    # Bug fix
+0.2.0    # New feature
+1.0.0    # First stable release
+```
 
-## **📋 Code Standards**
+### **Release Process**
 
-### **TypeScript Conventions**
-- ✅ **Strict mode** enabled
-- ✅ **Type safety** for all components
-- ✅ **Interface definitions** for props
-- ✅ **Proper imports** with type safety
+```bash
+# ✅ Release workflow
+1. Update version numbers (package.json, app.json)
+2. Update changelog
+3. Create release branch
+4. Test thoroughly
+5. Create Git tag
+6. Merge to main
+7. Deploy to production
+```
 
-### **Error Handling**
-- ✅ **Graceful degradation** - Handle missing features
-- ✅ **User feedback** - Show appropriate messages
-- ✅ **Fallback UI** - Default states for components
+## **🧪 Testing & Performance**
 
-### **Performance Considerations**
-- ✅ **Efficient rendering** - Use proper React patterns
-- ✅ **Memory management** - Clean up resources
-- ✅ **Bundle optimization** - Minimize dependencies
+### **Testing Approach**
 
-## **🔍 AI Context Maintenance**
+- **Test on web first** - `npm run web`
+- **Test on mobile** - Expo Go scanning
+- **Test both platforms** - Web and mobile
+
+### **Code Review Guidelines**
+
+- **Functionality** - Does the code work as intended?
+- **Code Quality** - Is the code clean and maintainable?
+- **Testing** - Are there adequate tests?
+- **Documentation** - Is documentation updated?
+- **Performance** - Are there performance concerns?
+- **Security** - Are there security issues?
+- **Standards** - Does it follow project conventions?
+
+### **Communication Standards**
+
+- **Use descriptive PR titles** - Clear, concise descriptions
+- **Link to issues** - Reference related tickets
+- **Provide context** - Explain why changes were made
+- **Ask questions** - Don't hesitate to ask for clarification
+
+## **📝 Documentation Standards**
+
+### **Component Documentation**
+
+```typescript
+/**
+ * HomeScreen component displays the main home interface
+ * with Material Design 3 components and navigation
+ *
+ * @component
+ * @example
+ * <HomeScreen />
+ */
+export default function HomeScreen() {
+  // Component implementation
+}
+```
+
+### **Function Documentation**
+
+```typescript
+/**
+ * Handles button press events with proper error handling
+ *
+ * @param event - Button press event
+ * @param callback - Optional callback function
+ * @returns Promise<void>
+ */
+const handleButtonPress = async (
+npm run lint         # Run ESLint
+npm run lint:fix     # Fix ESLint errors
+  event: PressEvent,
+  callback?: () => void
+): Promise<void> => {
+  // Function implementation
+};
+```
+
+- `navigation/` - Navigation components
+
+## **🔍 AI Context & Documentation**
 
 ### **Documentation Updates**
+
 When making changes, update:
-- ✅ `AI-CONTEXT-INDEX.md` - Project overview
-- ✅ `TECHNICAL-REFERENCE.md` - Implementation details
-- ✅ `STARTUP-GUIDE.md` - Commands and setup
-- ✅ `TROUBLESHOOTING-GUIDE.md` - Issue resolution
+
+- `AI-CONTEXT-INDEX.md` - Project overview
+- `TECHNICAL-REFERENCE.md` - Implementation details
+- `STARTUP-GUIDE.md` - Commands and setup
+- `TROUBLESHOOTING-GUIDE.md` - Issue resolution
 
 ### **Context Synchronization**
-- ✅ **Keep documentation current** with code changes
-- ✅ **Update search keywords** for AI tools
-- ✅ **Maintain file priority** hierarchy
-- ✅ **Verify information accuracy**
+
+- **Keep documentation current** with code changes
+- **Update search keywords** for AI tools
+- **Maintain file priority** hierarchy
+- **Verify information accuracy**
 
 ## **🎯 Future Considerations**
 
 ### **Planned Improvements**
-- ✅ **Separated styles system** - Component-specific styles in separate files
-- 🔄 **Shared styles system** - Extract reusable styles across components
-- 🔄 **Theme customization** - Dynamic theming support
-- 🔄 **Component library** - Reusable component system
-- 🔄 **Testing framework** - Unit and integration tests
+
+- **Shared styles system** - Extract reusable styles across components
+- **Theme customization** - Dynamic theming support
+- **Component library** - Reusable component system
+- **Testing framework** - Unit and integration tests
 
 ### **Scalability Patterns**
-- ✅ **Folder-based organization** - Each screen in its own folder
-- ✅ **Separated concerns** - Logic and styles in separate files
-- 🔄 **Feature-based organization** - Group by functionality
-- 🔄 **Shared utilities** - Common helper functions
-- 🔄 **State management** - Global state solution
-- 🔄 **API integration** - Network layer architecture
+
+- **Feature-based organization** - Group by functionality
+- **Shared utilities** - Common helper functions
+- **State management** - Global state solution
+- **API integration** - Network layer architecture
 
 ---
 
 ## **📋 Quick Reference**
 
 ### **Essential Commands**
+
 ```bash
 npm run web          # Start development server
 npm run cleanup      # Kill hanging processes
@@ -315,6 +545,7 @@ npm run dev          # Parallel web + Android
 ```
 
 ### **Key Files**
+
 - `App.tsx` - Main app component
 - `screens/home/` - Home screen folder (index.tsx + styles.ts)
 - `screens/scan/` - Scan screen folder (index.tsx + styles.ts)
@@ -322,12 +553,13 @@ npm run dev          # Parallel web + Android
 - `package.json` - Dependencies
 
 ### **Current Status**
-- ✅ **Production Ready** - Basic app functional
-- ✅ **Material Design 3** - Modern UI components
-- ✅ **Navigation** - Bottom tab navigation
-- ✅ **Cross-platform** - Web and mobile support
-- ✅ **Organized Structure** - Folder-based component organization
-- ✅ **Separated Styles** - Component logic and styles in separate files
+
+- **Production Ready** - Basic app functional
+- **Material Design 3** - Modern UI components
+- **Navigation** - Bottom tab navigation
+- **Cross-platform** - Web and mobile support
+- **Organized Structure** - Folder-based component organization
+- **Code Quality** - ESLint, Prettier, and pre-commit hooks
 
 ---
 

@@ -1,23 +1,12 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  button: {
+    marginVertical: 4,
+  },
+  buttonContainer: {
+    borderRadius: 12,
     padding: 16,
-  },
-  header: {
-    padding: 24,
-    marginBottom: 24,
-    borderRadius: 16,
-    alignItems: 'center',
-  },
-  headerTitle: {
-    fontWeight: 'bold',
-    marginBottom: 8,
-  },
-  headerSubtitle: {
-    opacity: 0.9,
-    textAlign: 'center',
   },
   card: {
     marginBottom: 24,
@@ -25,36 +14,47 @@ export const styles = StyleSheet.create({
   cardContent: {
     alignItems: 'center',
   },
-  scanIcon: {
-    fontSize: 48,
-    marginBottom: 16,
-  },
-  cardTitle: {
-    marginBottom: 8,
-    fontWeight: '600',
-    textAlign: 'center',
-  },
   cardText: {
     lineHeight: 20,
     textAlign: 'center',
   },
-  scanArea: {
-    height: 200,
+  cardTitle: {
+    fontWeight: '600',
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  container: {
+    flex: 1,
+    padding: 16,
+  },
+  header: {
+    alignItems: 'center',
     borderRadius: 16,
     marginBottom: 24,
-    justifyContent: 'center',
+    padding: 24,
+  },
+  headerSubtitle: {
+    opacity: 0.9,
+    textAlign: 'center',
+  },
+  headerTitle: {
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  scanArea: {
     alignItems: 'center',
-    borderWidth: 2,
+    borderRadius: 16,
     borderStyle: 'dashed',
+    borderWidth: 2,
+    height: 200,
+    justifyContent: 'center',
+    marginBottom: 24,
   },
   scanAreaText: {
     marginVertical: 4,
   },
-  buttonContainer: {
-    padding: 16,
-    borderRadius: 12,
-  },
-  button: {
-    marginVertical: 4,
+  scanIcon: {
+    fontSize: 48,
+    marginBottom: 16,
   },
 });
