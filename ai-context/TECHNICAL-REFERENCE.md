@@ -29,19 +29,51 @@
 
 ### **Current App.tsx Implementation**
 ```tsx
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { PaperProvider, MD3LightTheme, Button, Text } from 'react-native-paper';
+import React from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { PaperProvider, MD3LightTheme } from 'react-native-paper';
+
+import AppNavigator from './navigation';
 
 export default function App() {
   return (
     <SafeAreaProvider>
       <PaperProvider theme={MD3LightTheme}>
-        <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16 }}>
-          <Text variant="headlineMedium">Hello, World 👋</Text>
-          <Button mode="contained" onPress={() => {}}>Press me</Button>
-        </SafeAreaView>
+        <AppNavigator />
       </PaperProvider>
     </SafeAreaProvider>
+  );
+}
+```
+
+### **Navigation Structure**
+```
+navigation/
+├── index.tsx                 # Main navigation component
+└── types.ts                  # Navigation type definitions
+```
+
+### **Navigation Component (navigation/index.tsx)**
+```tsx
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MD3LightTheme } from 'react-native-paper';
+
+import HomeScreen from '../screens/home';
+import ScanScreen from '../screens/scan';
+import { RootTabParamList, IconName } from './types';
+
+const Tab = createBottomTabNavigator<RootTabParamList>();
+
+export default function AppNavigator() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator>
+        {/* Navigation configuration */}
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 ```

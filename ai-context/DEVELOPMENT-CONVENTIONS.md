@@ -8,6 +8,9 @@ This document outlines the development conventions, coding standards, and best p
 ### **File Organization**
 ```
 HelloWorldMobile/
+├── navigation/                 # Navigation components
+│   ├── index.tsx             # Main navigation component
+│   └── types.ts              # Navigation type definitions
 ├── screens/                    # Screen components
 │   ├── home/                  # Home screen folder
 │   │   ├── index.tsx         # Home component logic
@@ -22,7 +25,7 @@ HelloWorldMobile/
 │   ├── TROUBLESHOOTING-GUIDE.md
 │   ├── DEVELOPMENT-CONVENTIONS.md (this file)
 │   └── ...
-├── App.tsx                    # Main app component
+├── App.tsx                    # Main app component with providers
 ├── package.json
 ├── app.json
 └── .vscode/launch.json
@@ -31,6 +34,11 @@ HelloWorldMobile/
 ### **Branch Strategy**
 - **`main`** - Production branch (stable releases)
 - **`staging`** - Pre-production testing branch (current development)
+
+### **Navigation Structure**
+- **`navigation/index.tsx`** - Main navigation component with bottom tab navigator
+- **`navigation/types.ts`** - TypeScript type definitions for navigation
+- **Separation of Concerns** - Navigation logic separated from main App component
 
 ## **🎨 Styling Conventions**
 
