@@ -17,7 +17,7 @@ export const createStyles = (theme: MD3Theme) =>
     },
     cameraView: {
       borderRadius: 12,
-      height: 200,
+      height: 300,
       width: '100%',
     },
     card: {
@@ -68,6 +68,16 @@ export const createStyles = (theme: MD3Theme) =>
       borderRadius: 8,
       marginVertical: 4,
       padding: 12,
+    },
+    historySection: {
+      marginTop: 16,
+    },
+    overlayText: {
+      bottom: 16,
+      left: 16,
+      position: 'absolute',
+      right: 16,
+      textAlign: 'center',
     },
     scanArea: {
       alignItems: 'center',
