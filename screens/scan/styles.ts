@@ -79,6 +79,10 @@ export const createStyles = (theme: MD3Theme) =>
       right: 16,
       textAlign: 'center',
     },
+    permissionText: {
+      marginTop: 8,
+      textAlign: 'center',
+    },
     scanArea: {
       alignItems: 'center',
       borderRadius: 16,

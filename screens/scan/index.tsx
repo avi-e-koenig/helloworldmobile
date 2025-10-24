@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Platform, ScrollView } from 'react-native';
+import { Platform, ScrollView, Alert } from 'react-native';
 import {
   Text,
   Card,
@@ -13,11 +13,19 @@ import { CameraView, useCameraPermissions } from 'expo-camera';
 
 import { createStyles } from './styles';
 
+/**
+ * ScanScreen component provides barcode and QR code scanning functionality
+ * with Material Design UI, permission handling, and scan history
+ *
+ * @component
+ * @example
+ * <ScanScreen />
+ */
 export default function ScanScreen() {
   const theme = useTheme();
   const styles = createStyles(theme);
 
-  const [permission] = useCameraPermissions();
+  const [permission, requestPermission] = useCameraPermissions();
   const [scanned, setScanned] = useState(false);
   const [scannedData, setScannedData] = useState<string>('');
   const [scannedType, setScannedType] = useState<string>('');
@@ -25,6 +33,40 @@ export default function ScanScreen() {
     { data: string; type: string; timestamp: Date }[]
   >([]);
 
+  /**
+   * Handles camera permission request with proper error handling
+   * Shows appropriate alerts based on permission result
+   *
+   * @returns Promise<void>
+   */
+  const handleRequestPermission = async () => {
+    try {
+      const result = await requestPermission();
+      if (!result.granted) {
+        Alert.alert(
+          'Camera Permission Required',
+          'This app needs camera access to scan barcodes. Please enable camera permissions in your device settings.',
+          [
+            { text: 'Cancel', style: 'cancel' },
+            { text: 'Try Again', onPress: handleRequestPermission },
+          ]
+        );
+      }
+    } catch {
+      Alert.alert(
+        'Permission Error',
+        'There was an error requesting camera permission. Please check your device settings.',
+        [{ text: 'OK' }]
+      );
+    }
+  };
+
+  /**
+   * Handles barcode scanning results and updates scan history
+   *
+   * @param type - Type of barcode scanned (QR, UPC, etc.)
+   * @param data - Scanned data content
+   */
   const handleBarCodeScanned = ({
     type,
     data,
@@ -45,12 +87,18 @@ export default function ScanScreen() {
     setScanHistory(prev => [newScan, ...prev.slice(0, 9)]); // Keep last 10 scans
   };
 
+  /**
+   * Resets the scan state to allow scanning again
+   */
   const resetScan = () => {
     setScanned(false);
     setScannedData('');
     setScannedType('');
   };
 
+  /**
+   * Clears the scan history and resets the current scan
+   */
   const clearHistory = () => {
     setScanHistory([]);
     resetScan();
@@ -132,6 +180,32 @@ export default function ScanScreen() {
             </Surface>
           </Card.Content>
         </Card>
+
+        {/* Permission Request Button */}
+        {Platform.OS !== 'web' && (
+          <Card style={styles.card} mode='elevated'>
+            <Card.Content>
+              <Button
+                mode='contained'
+                onPress={handleRequestPermission}
+                style={styles.button}
+                icon='camera'
+              >
+                <Text>Grant Camera Permission</Text>
+              </Button>
+              <Text
+                variant='bodySmall'
+                style={[
+                  styles.scanAreaText,
+                  styles.permissionText,
+                  { color: theme.colors.onSurfaceVariant },
+                ]}
+              >
+                Tap to request camera permission for barcode scanning
+              </Text>
+            </Card.Content>
+          </Card>
+        )}
 
         {/* Demo Data for Web */}
         {Platform.OS === 'web' && (
