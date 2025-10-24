@@ -5,6 +5,7 @@ import { Text, Card, Button, Surface, useTheme } from 'react-native-paper';
 
 import { createStyles } from './styles';
 import packageJson from '../../package.json';
+import PWAInstallPrompt from '../../components/PWAInstallPrompt';
 
 /**
  * HomeScreen component displays the main home interface
@@ -23,6 +24,9 @@ export default function HomeScreen() {
       style={[styles.container, { backgroundColor: theme.colors.background }]}
     >
       <ScrollView contentContainerStyle={styles.scrollContent}>
+        {/* PWA Install Prompt */}
+        <PWAInstallPrompt />
+
         {/* Header Section */}
         <Surface
           style={[styles.header, { backgroundColor: theme.colors.primary }]}
