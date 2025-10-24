@@ -4,6 +4,11 @@ import { Button, Card, Text, Surface, useTheme } from 'react-native-paper';
 
 import { createStyles } from './PWAInstallPrompt.styles';
 
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
+}
+
 interface PWAInstallPromptProps {
   onInstall?: () => void;
   onDismiss?: () => void;
@@ -28,7 +33,8 @@ export default function PWAInstallPrompt({
 }: PWAInstallPromptProps) {
   const theme = useTheme();
   const styles = createStyles();
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [deferredPrompt, setDeferredPrompt] =
+    useState<BeforeInstallPromptEvent | null>(null);
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
 
   useEffect(() => {
@@ -36,10 +42,11 @@ export default function PWAInstallPrompt({
 
     // Listen for the beforeinstallprompt event
     const handleBeforeInstallPrompt = (e: Event) => {
+      const event = e as BeforeInstallPromptEvent;
       // Prevent the mini-infobar from appearing on mobile
-      e.preventDefault();
+      event.preventDefault();
       // Stash the event so it can be triggered later
-      setDeferredPrompt(e);
+      setDeferredPrompt(event);
       setShowInstallPrompt(true);
     };
 
@@ -47,16 +54,18 @@ export default function PWAInstallPrompt({
     const handleAppInstalled = () => {
       setShowInstallPrompt(false);
       setDeferredPrompt(null);
-      console.log('PWA was installed');
     };
 
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    window.addEventListener(
+      'beforeinstallprompt',
+      handleBeforeInstallPrompt as EventListener
+    );
     window.addEventListener('appinstalled', handleAppInstalled);
 
     return () => {
       window.removeEventListener(
         'beforeinstallprompt',
-        handleBeforeInstallPrompt
+        handleBeforeInstallPrompt as EventListener
       );
       window.removeEventListener('appinstalled', handleAppInstalled);
     };
@@ -75,10 +84,8 @@ export default function PWAInstallPrompt({
     const { outcome } = await deferredPrompt.userChoice;
 
     if (outcome === 'accepted') {
-      console.log('User accepted the install prompt');
       onInstall?.();
     } else {
-      console.log('User dismissed the install prompt');
       onDismiss?.();
     }
 
