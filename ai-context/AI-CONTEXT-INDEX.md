@@ -26,12 +26,14 @@ ai-context/
 ├── STARTUP-GUIDE.md (quick reference)
 ├── TECHNICAL-REFERENCE.md (implementation details)
 ├── TROUBLESHOOTING-GUIDE.md (common issues)
+├── BUILD-GUIDE.md (APK building process)
 └── directories/
     ├── startup/ (quick-start.md, README.md)
     ├── setup/ (installation.md)
     ├── implementation/ (main-guide.md)
     ├── code-examples/ (App.tsx, advanced-example.tsx, README.md)
     ├── troubleshooting/ (common-issues.md, README.md)
+    ├── deployment/ (build-and-deploy.md)
     └── next-steps/ (enhancements.md, README.md)
 ```
 
@@ -43,6 +45,12 @@ ai-context/
 - `npm run start` - Mobile only (port 3001)
 - `npm run cleanup` - Kill hanging Node.js processes
 - `npm run dev` - Parallel web + Android (with cleanup)
+
+### **Build Commands**
+
+- `./gradlew assembleRelease` - Build standalone APK (see BUILD-GUIDE.md)
+- `./gradlew clean` - Clean build artifacts
+- `./gradlew assembleDebug` - Build debug APK
 
 ### **VS Code Launch Configurations**
 
@@ -178,12 +186,13 @@ export default function AppNavigator() {
 
 ## 🔍 Search Keywords for AI Tools
 
-**Technologies**: React Native, Expo, React Native Paper, Material Design 3, TypeScript
-**Commands**: npm run web, npm run start, npm run cleanup, npm run dev
-**Files**: App.tsx, package.json, app.json, tsconfig.json, launch.json
+**Technologies**: React Native, Expo, React Native Paper, Material Design 3, TypeScript, Android, Gradle
+**Commands**: npm run web, npm run start, npm run cleanup, npm run dev, ./gradlew assembleRelease
+**Files**: App.tsx, package.json, app.json, tsconfig.json, launch.json, build.gradle, BUILD-GUIDE.md
 **Ports**: 3001, 3002, Metro bundler
 **Components**: PaperProvider, SafeAreaView, Button, Text, MD3LightTheme
-**Issues**: port conflicts, SafeAreaView deprecation, TypeScript configuration, cache issues
+**Build**: APK, standalone, release, debug, Java 17, Android Studio, Gradle
+**Issues**: port conflicts, SafeAreaView deprecation, TypeScript configuration, cache issues, build errors
 
 ## 📋 Status Checklist
 
@@ -197,6 +206,9 @@ export default function AppNavigator() {
 - ✅ Parallel development support
 - ✅ Documentation complete
 - ✅ Troubleshooting guides available
+- ✅ Standalone APK build process documented
+- ✅ Java 17+ environment configured
+- ✅ Android build system working
 
 ---
 
