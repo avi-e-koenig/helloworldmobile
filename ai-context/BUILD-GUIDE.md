@@ -90,6 +90,39 @@ Copy to project root for easy access:
 cp ./app/build/outputs/apk/release/app-release.apk ../HelloWorldMobile-release.apk
 ```
 
+## Custom Output Directory Configuration
+
+### Method 1: Copy After Build
+
+```bash
+./gradlew assembleRelease && mkdir -p ../dist/apk && cp app/build/outputs/apk/release/app-release.apk ../dist/apk/HelloWorldMobile-release-$(date +%Y%m%d-%H%M%S).apk
+```
+
+### Method 2: Using Custom Build Script
+
+```bash
+# Build with default output directory (dist/apk)
+./build-apk.sh
+
+# Build with custom output directory
+./build-apk.sh custom-output-dir
+```
+
+### Method 3: Using Gradle Properties
+
+The `android/gradle.properties` file includes:
+
+```properties
+# Custom output directory configuration
+android.output.dir=../dist/apk
+```
+
+### Method 4: Using Command Line Parameters
+
+```bash
+./gradlew assembleRelease -Pandroid.output.dir=../dist/apk
+```
+
 ## Build Configuration
 
 ### Current Build Settings
@@ -180,6 +213,12 @@ org.gradle.jvmargs=-Xmx4g -XX:MaxMetaspaceSize=1g
 
 # Check build tasks
 ./gradlew tasks
+
+# Custom output directory methods
+./gradlew assembleRelease && mkdir -p ../dist/apk && cp app/build/outputs/apk/release/app-release.apk ../dist/apk/HelloWorldMobile-release-$(date +%Y%m%d-%H%M%S).apk
+
+# Using custom build script
+./build-apk.sh [output-dir]
 ```
 
 ## Production Build Considerations
@@ -245,6 +284,8 @@ buildTypes {
 - [ ] Navigation works correctly
 - [ ] Barcode scanner functions properly
 - [ ] Camera permissions are granted
+- [ ] Permission request dialog appears when needed
+- [ ] Permission request button works correctly
 - [ ] UI renders correctly on different screen sizes
 - [ ] App handles orientation changes
 - [ ] No crashes during normal usage
