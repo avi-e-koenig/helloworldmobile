@@ -214,11 +214,12 @@ org.gradle.jvmargs=-Xmx4g -XX:MaxMetaspaceSize=1g
 # Check build tasks
 ./gradlew tasks
 
-# Custom output directory methods
-./gradlew assembleRelease && mkdir -p ../dist/apk && cp app/build/outputs/apk/release/app-release.apk ../dist/apk/HelloWorldMobile-release-$(date +%Y%m%d-%H%M%S).apk
+# NPM Scripts (Recommended)
+npm run build:apk              # Build APK using build-apk.sh script
+npm run build:apk:clean        # Clean build and create APK using build-apk.sh script
 
-# Using custom build script
-./build-apk.sh [output-dir]
+# Direct script usage
+./build-apk.sh [output-dir]    # Build APK with custom output directory
 ```
 
 ## Production Build Considerations

@@ -48,6 +48,8 @@ ai-context/
 
 ### **Build Commands**
 
+- `npm run build:apk` - Build APK using build-apk.sh script (recommended)
+- `npm run build:apk:clean` - Clean build and create APK using build-apk.sh script
 - `./gradlew assembleRelease` - Build standalone APK (see BUILD-GUIDE.md)
 - `./gradlew clean` - Clean build artifacts
 - `./gradlew assembleDebug` - Build debug APK
