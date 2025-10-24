@@ -33,6 +33,7 @@ export default defineConfig([
       '*.swo',
       '.DS_Store',
       'Thumbs.db',
+      'public/**',
     ],
   },
 
