@@ -6,6 +6,14 @@ import { Text, Card, Button, Surface, useTheme } from 'react-native-paper';
 import { createStyles } from './styles';
 import packageJson from '../../package.json';
 
+/**
+ * HomeScreen component displays the main home interface
+ * with Material Design 3 components and app information
+ *
+ * @component
+ * @example
+ * <HomeScreen />
+ */
 export default function HomeScreen() {
   const theme = useTheme();
   const styles = createStyles(theme);
