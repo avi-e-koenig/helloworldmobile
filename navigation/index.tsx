@@ -9,6 +9,15 @@ import { RootTabParamList, IconName } from './types';
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
+/**
+ * AppNavigator component provides bottom tab navigation
+ * with Material Design 3 theming and custom icons
+ *
+ * @component
+ * @example
+ * <AppNavigator />
+ */
+
 const tablist = [
   {
     name: 'Home',
